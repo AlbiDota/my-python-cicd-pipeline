@@ -46,7 +46,7 @@ jobs:
       
       - name: Display deployment info
         run: |
-          echo "## Docker Image Published! 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "## Docker Image Published!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Image:** \`${{ secrets.DOCKER_USERNAME }}/calculator-api\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
