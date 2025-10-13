@@ -1,7 +1,7 @@
 # Calculator API - CI/CD Example 🧮
 
-[![CI - Test and Lint](https://github.com/YOUR_USERNAME/python-cicd-example/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/python-cicd-example/actions/workflows/ci.yml)
-[![CD - Build and Push Docker Image](https://github.com/YOUR_USERNAME/python-cicd-example/actions/workflows/cd.yml/badge.svg)](https://github.com/YOUR_USERNAME/python-cicd-example/actions/workflows/cd.yml)
+[![CI - Test and Lint](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml/badge.svg)](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml)
+[![CD - Build and Push Docker Image](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml/badge.svg)](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml)
 
 A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with GitHub Actions, Docker, and automated testing.
 
