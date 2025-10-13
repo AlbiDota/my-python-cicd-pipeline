@@ -32,6 +32,12 @@ class Calculator:
         if b == 0:
             raise ValueError("Cannot divide by zero")
         return a / b
+    
+    # new method
+    @staticmethod
+    def power(base, exponent):
+        """Raise the base to the power of exponent"""
+        return base ** exponent
 
 
 # Initialize calculator instance
@@ -114,6 +120,22 @@ def divide(a, b):
         return jsonify({'error': 'Invalid number format'}), 400
 
 
+# route for the power method
+@app.route("/power/<a>/<b>", methods=["GET"])
+def power_route(a, b):
+    try:
+        a, b = float(a), float(b)
+        result = calc.power(a, b)
+        return jsonify({
+            'operation': 'power',
+            'base': a,
+            'exponent': b,
+            'result': result
+        }), 200
+    except ValueError:
+        return jsonify({'error': 'BAD REQUEST: Invalid number format'}), 400
+
+
 @app.route('/', methods=['GET'])
 def home():
     """Home endpoint with API information"""
@@ -124,7 +146,8 @@ def home():
             'add': '/add/<a>/<b>',
             'subtract': '/subtract/<a>/<b>',
             'multiply': '/multiply/<a>/<b>',
-            'divide': '/divide/<a>/<b>'
+            'divide': '/divide/<a>/<b>',
+            'power': '/power/<base>/<exponent>'
         }
     }), 200
 

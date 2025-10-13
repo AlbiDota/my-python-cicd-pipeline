@@ -57,6 +57,17 @@ class TestCalculatorMethods:
         """Test division by zero raises ValueError"""
         with pytest.raises(ValueError, match="Cannot divide by zero"):
             calculator.divide(10, 0)
+    
+    def test_power_endpoint(self, client):
+        """Test power endpoint"""
+        response = client.get('/power/2/3')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data['result'] == 8
+        assert data['operation'] == 'power'
+        assert data['base'] == 2
+        assert data['exponent'] == 3
+
 
 
 # Test API Endpoints
@@ -132,6 +143,16 @@ class TestAPIEndpoints:
         assert response.status_code == 200
         data = response.get_json()
         assert data['result'] == 3.5
+
+    def test_power_endpoint(self, client):
+        """Test power endpoint"""
+        response = client.get('/power/2/3')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data['result'] == 8
+        assert data['operation'] == 'power'
+        assert data['base'] == 2
+        assert data['exponent'] == 3
 
 
 # Test Edge Cases
