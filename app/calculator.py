@@ -4,6 +4,7 @@ Provides basic arithmetic operations via REST endpoints
 """
 
 from flask import Flask, jsonify
+import math
 
 app = Flask(__name__)
 
@@ -33,17 +34,23 @@ class Calculator:
             raise ValueError("Cannot divide by zero")
         return a / b
     
-    # new method
+    # new methods
     @staticmethod
     def power(base, exponent):
         """Raise the base to the power of exponent"""
         return base ** exponent
+    
+    @staticmethod
+    def square(a):
+        """Square root of a"""
+        return math.sqrt(a)
 
 
 # Initialize calculator instance
 calc = Calculator()
 
-
+# -----------------------------------
+# routes
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
@@ -120,7 +127,7 @@ def divide(a, b):
         return jsonify({'error': 'Invalid number format'}), 400
 
 
-# route for the power method
+# route new methods
 @app.route("/power/<a>/<b>", methods=["GET"])
 def power_route(a, b):
     try:
@@ -135,7 +142,21 @@ def power_route(a, b):
     except ValueError:
         return jsonify({'error': 'BAD REQUEST: Invalid number format'}), 400
 
+@app.route("/square/<a>", methods=["GET"])
+def square_route(a):
+    try:
+        a = float(a)
+        result = calc.square(a)
+        return jsonify({
+            'operation': 'square',
+            'a': a,
+            'result': result
+        }), 200
+    except ValueError:
+        return jsonify({'error': 'BAD REQUEST: Invalid number format'}), 400
 
+# -----------------------------------
+# route for home
 @app.route('/', methods=['GET'])
 def home():
     """Home endpoint with API information"""
@@ -147,7 +168,8 @@ def home():
             'subtract': '/subtract/<a>/<b>',
             'multiply': '/multiply/<a>/<b>',
             'divide': '/divide/<a>/<b>',
-            'power': '/power/<base>/<exponent>'
+            'power': '/power/<base>/<exponent>',
+            'square': '/square/<a>',
         }
     }), 200
 

@@ -1,11 +1,48 @@
-# Calculator API - CI/CD Example 🧮
+# Calculator API - CI/CD Example
 
-[![CI - Test and Lint](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml/badge.svg)](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml)
-[![CD - Build and Push Docker Image](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml/badge.svg)](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml)
+**CI Status:** [View CI Workflow](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml)  
+**CD Status:** [View CD Workflow](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml)
 
 A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with GitHub Actions, Docker, and automated testing.
+## TODO
 
-## 🚀 Features
+### Add More Features
+- [X] Power operation (x^y)
+- [ ] Square root function
+- [ ] Modulo operation
+- [ ] Scientific calculator functions
+
+### Improve Testing
+- [ ] Integration tests
+- [ ] API endpoint testing with pytest
+- [ ] Load testing
+- [ ] Security testing
+
+### Enhance CI/CD
+- [ ] Add staging environment
+- [ ] Implement blue-green deployment
+- [ ] Add manual approval gates
+- [ ] Deploy to cloud (AWS, Azure, GCP)
+
+### Code Quality
+- [ ] Add type hints (mypy)
+- [ ] Code formatting (black)
+- [ ] Security scanning (bandit)
+- [ ] Dependency updates (Dependabot)
+
+### Monitoring & Observability
+- [ ] Application logging
+- [ ] Health check improvements
+- [ ] Metrics collection (Prometheus)
+- [ ] Error tracking (Sentry)
+
+### Documentation
+- [ ] API documentation (Swagger/OpenAPI)
+- [ ] Architecture diagrams
+- [ ] Deployment guides
+- [ ] Contributing guidelines
+
+## Features
 
 - **REST API** with basic calculator operations (add, subtract, multiply, divide)
 - **Automated Testing** with pytest and coverage reporting
@@ -14,7 +51,7 @@ A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with
 - **Containerized** with Docker for easy deployment
 - **Health Check** endpoint for monitoring
 
-## 📋 API Endpoints
+## API Endpoints
 
 | Endpoint | Method | Description | Example |
 |----------|--------|-------------|---------|
@@ -25,7 +62,7 @@ A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with
 | `/multiply/<a>/<b>` | GET | Multiply two numbers | `http://localhost:5000/multiply/7/6` |
 | `/divide/<a>/<b>` | GET | Divide a by b | `http://localhost:5000/divide/20/4` |
 
-## 🛠️ Local Development
+## Local Development
 
 ### Prerequisites
 
@@ -100,7 +137,7 @@ flake8 app/ --count --select=E9,F63,F7,F82 --show-source --statistics
 flake8 app/ --count --max-complexity=10 --max-line-length=127 --statistics
 ```
 
-## 🐳 Docker
+## Docker
 
 ### Build Docker Image
 
@@ -124,22 +161,22 @@ docker pull YOUR_USERNAME/calculator-api:latest
 docker run -p 5000:5000 YOUR_USERNAME/calculator-api:latest
 ```
 
-## 🔄 CI/CD Pipeline
+## CI/CD Pipeline
 
 ### Continuous Integration (CI)
 
 **Triggers:** Push to `main` or Pull Request to `main`
 
 **Pipeline Steps:**
-1. ✅ Checkout code
-2. ✅ Set up Python 3.11
-3. ✅ Install dependencies (with caching)
-4. ✅ Verify project structure
-5. ✅ Check test discovery
-6. ✅ Run linting with flake8
-7. ✅ Run tests with pytest (coverage enabled)
-8. ✅ Upload coverage report as artifact
-9. ✅ Display coverage summary
+1. [X] Checkout code
+2. [X] Set up Python 3.11
+3. [X] Install dependencies (with caching)
+4. [X] Verify project structure
+5. [X] Check test discovery
+6. [X] Run linting with flake8
+7. [X] Run tests with pytest (coverage enabled)
+8. [X] Upload coverage report as artifact
+9. [X] Display coverage summary
 
 **Success Criteria:**
 - All tests pass (16+ tests)
@@ -151,21 +188,21 @@ docker run -p 5000:5000 YOUR_USERNAME/calculator-api:latest
 **Triggers:** Push to `main` (only after CI passes)
 
 **Pipeline Steps:**
-1. ✅ Checkout code
-2. ✅ Set up Docker Buildx
-3. ✅ Login to Docker Hub (using secrets)
-4. ✅ Extract metadata and generate tags
-5. ✅ Build Docker image
-6. ✅ Push to Docker Hub with tags:
+1. [X] Checkout code
+2. [X] Set up Docker Buildx
+3. [X] Login to Docker Hub (using secrets)
+4. [X] Extract metadata and generate tags
+5. [X] Build Docker image
+6. [X] Push to Docker Hub with tags:
    - `latest` (for main branch)
    - `main-<commit-sha>` (specific version)
-7. ✅ Display deployment information
+7. [X] Display deployment information
 
 **Image Tags:**
 - `YOUR_USERNAME/calculator-api:latest` - Most recent build
 - `YOUR_USERNAME/calculator-api:main-abc1234` - Specific commit
 
-## 🔐 Setup Instructions
+## Setup Instructions
 
 ### 1. Fork or Clone Repository
 
@@ -265,7 +302,7 @@ git commit -m "Initial commit: Set up CI/CD pipeline"
 git push -u origin main
 ```
 
-### 10. Watch the Pipeline! ✨
+### 10. Watch the Pipeline!
 
 1. Go to your GitHub repository
 2. Click the **"Actions"** tab
@@ -275,7 +312,7 @@ git push -u origin main
 
 **Pipeline completes in ~5-8 minutes**
 
-## 📊 Project Structure
+## Project Structure
 
 ```
 python-cicd-example/
@@ -296,7 +333,7 @@ python-cicd-example/
 └── README.md
 ```
 
-## 🧪 Testing the Deployed API
+## Testing the Deployed API
 
 Once your Docker image is on Docker Hub:
 
@@ -324,18 +361,18 @@ curl http://localhost:5000/divide/20/4
 }
 ```
 
-## 📈 What You'll Learn
+## What You'll Learn
 
-- ✅ Setting up CI/CD pipelines with GitHub Actions
-- ✅ Writing unit tests with pytest
-- ✅ Generating code coverage reports
-- ✅ Containerizing Python applications with Docker
-- ✅ Automating Docker builds and deployments
-- ✅ Managing secrets securely in GitHub
-- ✅ Working with REST APIs in Flask
-- ✅ Implementing DevOps best practices
+- [X] Setting up CI/CD pipelines with GitHub Actions
+- [X] Writing unit tests with pytest
+- [X] Generating code coverage reports
+- [X] Containerizing Python applications with Docker
+- [X] Automating Docker builds and deployments
+- [X] Managing secrets securely in GitHub
+- [X] Working with REST APIs in Flask
+- [X] Implementing DevOps best practices
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### CI Fails: "collected 0 items"
 
@@ -419,45 +456,7 @@ docker run -p 8080:5000 YOUR_USERNAME/calculator-api:latest
 # 4. Use token as password when pushing
 ```
 
-## 🚀 Next Steps & Enhancements
-
-### Add More Features
-- [ ] Power operation (x^y)
-- [ ] Square root function
-- [ ] Modulo operation
-- [ ] Scientific calculator functions
-
-### Improve Testing
-- [ ] Integration tests
-- [ ] API endpoint testing with pytest
-- [ ] Load testing
-- [ ] Security testing
-
-### Enhance CI/CD
-- [ ] Add staging environment
-- [ ] Implement blue-green deployment
-- [ ] Add manual approval gates
-- [ ] Deploy to cloud (AWS, Azure, GCP)
-
-### Code Quality
-- [ ] Add type hints (mypy)
-- [ ] Code formatting (black)
-- [ ] Security scanning (bandit)
-- [ ] Dependency updates (Dependabot)
-
-### Monitoring & Observability
-- [ ] Application logging
-- [ ] Health check improvements
-- [ ] Metrics collection (Prometheus)
-- [ ] Error tracking (Sentry)
-
-### Documentation
-- [ ] API documentation (Swagger/OpenAPI)
-- [ ] Architecture diagrams
-- [ ] Deployment guides
-- [ ] Contributing guidelines
-
-## 📚 Learning Resources
+## Learning Resources
 
 - **GitHub Actions:** https://docs.github.com/en/actions
 - **Docker:** https://docs.docker.com
@@ -465,11 +464,11 @@ docker run -p 8080:5000 YOUR_USERNAME/calculator-api:latest
 - **Pytest:** https://docs.pytest.org
 - **CI/CD Best Practices:** https://www.atlassian.com/continuous-delivery
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome!
 
@@ -479,7 +478,7 @@ Contributions, issues, and feature requests are welcome!
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 💡 Tips
+## Tips
 
 - **Test locally first:** Always run `pytest` before pushing
 - **Small commits:** Make incremental changes for easier debugging
@@ -487,7 +486,7 @@ Contributions, issues, and feature requests are welcome!
 - **Monitor Actions:** Check the Actions tab after each push
 - **Read logs:** If something fails, read the complete log output
 
-## 🎯 Success Checklist
+## Success Checklist
 
 Before you're done, verify:
 
@@ -499,7 +498,7 @@ Before you're done, verify:
 - [ ] Can pull and run image: `docker pull YOUR_USERNAME/calculator-api:latest`
 - [ ] API responds: `curl http://localhost:5000/health`
 
-## 🌟 Acknowledgments
+## Acknowledgments
 
 This project demonstrates modern DevOps practices using:
 - **GitHub Actions** for CI/CD automation
@@ -508,7 +507,5 @@ This project demonstrates modern DevOps practices using:
 - **Pytest** for testing
 
 ---
-
-**Made with ❤️ for learning CI/CD with GitHub Actions**
 
 *Questions? Issues? Open an issue on GitHub!*
