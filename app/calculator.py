@@ -44,6 +44,11 @@ class Calculator:
     def square(a):
         """Square root of a"""
         return math.sqrt(a)
+    
+    @staticmethod
+    def modulo(a,b):
+        """Modulo a of b"""
+        return a%b
 
 
 # Initialize calculator instance
@@ -155,6 +160,21 @@ def square_route(a):
     except ValueError:
         return jsonify({'error': 'BAD REQUEST: Invalid number format'}), 400
 
+@app.route("/modulo/<a>/<b>", methods=["GET"])
+def modulo_route(a, b):
+    try:
+        a = float(a)
+        b = float(b)
+        result = calc.modulo(a,b)
+        return jsonify({
+            'operation': 'modulo',
+            'a': a,
+            'b': b,
+            'result': result
+        }), 200
+    except ValueError:
+        return jsonify({'error': 'BAD REQUEST: Invalid number format'}), 400
+
 # -----------------------------------
 # route for home
 @app.route('/', methods=['GET'])
@@ -170,6 +190,8 @@ def home():
             'divide': '/divide/<a>/<b>',
             'power': '/power/<base>/<exponent>',
             'square': '/square/<a>',
+            'modulo': '/modulo/<a>/<b>',
+
         }
     }), 200
 

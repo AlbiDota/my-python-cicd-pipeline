@@ -58,15 +58,24 @@ class TestCalculatorMethods:
         with pytest.raises(ValueError, match="Cannot divide by zero"):
             calculator.divide(10, 0)
     
-    def test_power_endpoint(self, client):
-        """Test power endpoint"""
-        response = client.get('/power/2/3')
+    def test_power_endpoint(self, calculator):
+        """Test power"""
+        response = calculator.get('/power/2/3')
         assert response.status_code == 200
         data = response.get_json()
         assert data['result'] == 8
         assert data['operation'] == 'power'
         assert data['base'] == 2
         assert data['exponent'] == 3
+
+    def test_square(self, calculator):
+        """Test square"""
+        response = calculator.get("/square/4")
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["result"] == 2
+        assert data["operation"] == "square"
+        assert data["base"] == 4
 
 
 
@@ -153,6 +162,15 @@ class TestAPIEndpoints:
         assert data['operation'] == 'power'
         assert data['base'] == 2
         assert data['exponent'] == 3
+    
+    def test_square(self, calculator):
+        """Test square endpoint"""
+        response = calculator.get("/square/4")
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["result"] == 2
+        assert data["operation"] == "square"
+        assert data["base"] == 4
 
 
 # Test Edge Cases

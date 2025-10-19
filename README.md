@@ -1,15 +1,15 @@
 # Calculator API - CI/CD Example
 
-**CI Status:** [View CI Workflow](https://github.com/albidota/python-cicd-example/actions/workflows/ci.yml)  
-**CD Status:** [View CD Workflow](https://github.com/albidota/python-cicd-example/actions/workflows/cd.yml)
+**CI:** [View CI Workflow](https://github.com/AlbiDota/my-python-cicd-pipeline/blob/main/.github/workflows/ci.yml)  
+**CD:** [View CD Workflow](https://github.com/AlbiDota/my-python-cicd-pipeline/blob/main/.github/workflows/cd.yml)
 
 A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with GitHub Actions, Docker, and automated testing.
 ## TODO
 
 ### Add More Features
 - [X] Power operation (x^y)
-- [ ] Square root function
-- [ ] Modulo operation
+- [X] Square root function
+- [X] Modulo operation
 - [ ] Scientific calculator functions
 
 ### Improve Testing
@@ -61,6 +61,10 @@ A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with
 | `/subtract/<a>/<b>` | GET | Subtract b from a | `http://localhost:5000/subtract/10/4` |
 | `/multiply/<a>/<b>` | GET | Multiply two numbers | `http://localhost:5000/multiply/7/6` |
 | `/divide/<a>/<b>` | GET | Divide a by b | `http://localhost:5000/divide/20/4` |
+| `/power/<a>/<b>` | GET | Base to the power of exponent | `http://localhost:5000/power/4/2` |
+| `/square/<a>/` | GET | Value a squared | `http://localhost:5000/square/4` |
+| `/modulo/<a>/<b>` | GET | Modulo a of b | `http://localhost:5000/modulo/20/4` |
+
 
 ## Local Development
 
@@ -69,138 +73,6 @@ A simple Flask-based calculator API demonstrating a complete CI/CD pipeline with
 - Python 3.11+
 - pip
 - Virtual environment (recommended)
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/python-cicd-example.git
-cd python-cicd-example
-
-# Create and activate virtual environment
-# Linux/Mac:
-python3 -m venv venv
-source venv/bin/activate
-
-# Windows PowerShell:
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
-
-### Install Dependencies
-
-```bash
-# Upgrade pip
-python -m pip install --upgrade pip
-
-# Install production dependencies
-pip install -r requirements.txt
-
-# Install development dependencies (for testing)
-pip install -r requirements-dev.txt
-```
-
-### Run Locally
-
-```bash
-# Run the Flask application
-python app/calculator.py
-
-# The server will start at http://127.0.0.1:5000
-```
-
-Visit `http://localhost:5000` to access the API.
-
-### Run Tests
-
-```bash
-# Run all tests
-pytest tests/test_calculator.py -v
-
-# Run with coverage
-pytest tests/test_calculator.py --cov=app --cov-report=html
-
-# View coverage report in browser
-# Windows:
-start htmlcov/index.html
-# Linux/Mac:
-open htmlcov/index.html
-```
-
-### Linting
-
-```bash
-# Check for critical errors
-flake8 app/ --count --select=E9,F63,F7,F82 --show-source --statistics
-
-# Full linting check
-flake8 app/ --count --max-complexity=10 --max-line-length=127 --statistics
-```
-
-## Docker
-
-### Build Docker Image
-
-```bash
-docker build -t calculator-api .
-```
-
-### Run Docker Container
-
-```bash
-docker run -p 5000:5000 calculator-api
-```
-
-### Pull from Docker Hub
-
-```bash
-# Pull the latest image (replace YOUR_USERNAME with your Docker Hub username)
-docker pull YOUR_USERNAME/calculator-api:latest
-
-# Run the container
-docker run -p 5000:5000 YOUR_USERNAME/calculator-api:latest
-```
-
-## CI/CD Pipeline
-
-### Continuous Integration (CI)
-
-**Triggers:** Push to `main` or Pull Request to `main`
-
-**Pipeline Steps:**
-1. [X] Checkout code
-2. [X] Set up Python 3.11
-3. [X] Install dependencies (with caching)
-4. [X] Verify project structure
-5. [X] Check test discovery
-6. [X] Run linting with flake8
-7. [X] Run tests with pytest (coverage enabled)
-8. [X] Upload coverage report as artifact
-9. [X] Display coverage summary
-
-**Success Criteria:**
-- All tests pass (16+ tests)
-- No critical linting errors
-- Coverage report generated
-
-### Continuous Deployment (CD)
-
-**Triggers:** Push to `main` (only after CI passes)
-
-**Pipeline Steps:**
-1. [X] Checkout code
-2. [X] Set up Docker Buildx
-3. [X] Login to Docker Hub (using secrets)
-4. [X] Extract metadata and generate tags
-5. [X] Build Docker image
-6. [X] Push to Docker Hub with tags:
-   - `latest` (for main branch)
-   - `main-<commit-sha>` (specific version)
-7. [X] Display deployment information
-
-**Image Tags:**
-- `YOUR_USERNAME/calculator-api:latest` - Most recent build
-- `YOUR_USERNAME/calculator-api:main-abc1234` - Specific commit
 
 ## Setup Instructions
 
@@ -312,6 +184,49 @@ git push -u origin main
 
 **Pipeline completes in ~5-8 minutes**
 
+
+## CI/CD Pipeline
+
+### Continuous Integration (CI)
+
+**Triggers:** Push to `main` or Pull Request to `main`
+
+**Pipeline Steps:**
+1. [X] Checkout code
+2. [X] Set up Python 3.11
+3. [X] Install dependencies (with caching)
+4. [X] Verify project structure
+5. [X] Check test discovery
+6. [X] Run linting with flake8
+7. [X] Run tests with pytest (coverage enabled)
+8. [X] Upload coverage report as artifact
+9. [X] Display coverage summary
+
+**Success Criteria:**
+- All tests pass (16+ tests)
+- No critical linting errors
+- Coverage report generated
+
+### Continuous Deployment (CD)
+
+**Triggers:** Push to `main` (only after CI passes)
+
+**Pipeline Steps:**
+1. [X] Checkout code
+2. [X] Set up Docker Buildx
+3. [X] Login to Docker Hub (using secrets)
+4. [X] Extract metadata and generate tags
+5. [X] Build Docker image
+6. [X] Push to Docker Hub with tags:
+   - `latest` (for main branch)
+   - `main-<commit-sha>` (specific version)
+7. [X] Display deployment information
+
+**Image Tags:**
+- `YOUR_USERNAME/calculator-api:latest` - Most recent build
+- `YOUR_USERNAME/calculator-api:main-abc1234` - Specific commit
+
+
 ## Project Structure
 
 ```
@@ -325,7 +240,7 @@ python-cicd-example/
 │   └── calculator.py          # Flask application
 ├── tests/
 │   ├── __init__.py            # Test package initialization
-│   └── test_calculator.py     # Unit tests (16 tests)
+│   └── test_calculator.py     # Unit tests (16+ tests)
 ├── .gitignore
 ├── Dockerfile                  # Docker image configuration
 ├── requirements.txt            # Production dependencies
@@ -361,100 +276,6 @@ curl http://localhost:5000/divide/20/4
 }
 ```
 
-## What You'll Learn
-
-- [X] Setting up CI/CD pipelines with GitHub Actions
-- [X] Writing unit tests with pytest
-- [X] Generating code coverage reports
-- [X] Containerizing Python applications with Docker
-- [X] Automating Docker builds and deployments
-- [X] Managing secrets securely in GitHub
-- [X] Working with REST APIs in Flask
-- [X] Implementing DevOps best practices
-
-## Troubleshooting
-
-### CI Fails: "collected 0 items"
-
-**Problem:** Pytest can't find tests
-
-**Solution:**
-```bash
-# Verify test file name (must use underscore!)
-ls tests/
-# Should show: test_calculator.py (NOT test-calculator.py)
-
-# Verify __init__.py files exist
-ls app/__init__.py tests/__init__.py
-
-# Create if missing
-touch app/__init__.py tests/__init__.py
-
-# Test locally
-pytest tests/test_calculator.py -v
-```
-
-### CD Fails: "Username and password required"
-
-**Problem:** Docker Hub secrets not configured correctly
-
-**Solution:**
-1. Go to Settings → Secrets and variables → Actions
-2. Verify secrets are under **"Repository secrets"** (NOT "Environment secrets")
-3. Both `DOCKER_USERNAME` and `DOCKER_TOKEN` must exist
-4. If wrong, delete and re-add them correctly
-5. Re-run the failed workflow
-
-### Tests Pass Locally but Fail in CI
-
-**Problem:** Missing files or environment differences
-
-**Solution:**
-```bash
-# Check what's committed
-git ls-files tests/
-
-# Should include:
-# tests/__init__.py
-# tests/test_calculator.py
-
-# Ensure Python version matches
-python --version  # Should be 3.11+
-
-# Run exact CI command
-pytest tests/test_calculator.py -v --cov=app
-```
-
-### Docker Container Won't Start
-
-**Problem:** Port conflict or missing dependencies
-
-**Solution:**
-```bash
-# Check if port 5000 is in use
-# Windows PowerShell:
-Get-NetTCPConnection -LocalPort 5000
-
-# Linux/Mac:
-lsof -i :5000
-
-# Kill process using port 5000 if needed
-# Or use different port:
-docker run -p 8080:5000 YOUR_USERNAME/calculator-api:latest
-```
-
-### Can't Push to GitHub
-
-**Problem:** Authentication failure
-
-**Solution:**
-```bash
-# Use Personal Access Token (not password)
-# 1. Go to: GitHub Settings → Developer settings
-# 2. Personal access tokens → Tokens (classic)
-# 3. Generate new token with 'repo' scope
-# 4. Use token as password when pushing
-```
 
 ## Learning Resources
 
