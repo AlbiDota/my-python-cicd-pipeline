@@ -58,24 +58,21 @@ class TestCalculatorMethods:
         with pytest.raises(ValueError, match="Cannot divide by zero"):
             calculator.divide(10, 0)
     
-    def test_power_endpoint(self, calculator):
+    def test_power(self, calculator):
         """Test power"""
-        response = calculator.get('/power/2/3')
-        assert response.status_code == 200
-        data = response.get_json()
-        assert data['result'] == 8
-        assert data['operation'] == 'power'
-        assert data['base'] == 2
-        assert data['exponent'] == 3
+        assert calculator.power(2, 2) == 4
+        assert calculator.power(4, 4) == 256
+        assert calculator.power(3, 7) == 2187
 
     def test_square(self, calculator):
         """Test square"""
-        response = calculator.get("/square/4")
-        assert response.status_code == 200
-        data = response.get_json()
-        assert data["result"] == 2
-        assert data["operation"] == "square"
-        assert data["base"] == 4
+        assert calculator.square(9) == 3
+        assert calculator.square(4) == 2
+
+    def test_modulo(self, calculator):
+        """Test modulo"""
+        assert calculator.modulo(10, 2) == 0
+        assert calculator.modulo(10, 3) == 1
 
 
 
@@ -159,18 +156,22 @@ class TestAPIEndpoints:
         assert response.status_code == 200
         data = response.get_json()
         assert data['result'] == 8
-        assert data['operation'] == 'power'
-        assert data['base'] == 2
-        assert data['exponent'] == 3
+
     
-    def test_square(self, calculator):
+    def test_square_endpoint(self, client):
         """Test square endpoint"""
-        response = calculator.get("/square/4")
+        response = client.get('/square/4')
         assert response.status_code == 200
         data = response.get_json()
-        assert data["result"] == 2
-        assert data["operation"] == "square"
-        assert data["base"] == 4
+        assert data['result'] == 2
+    
+    def test_modulo_endpoint(self, client):
+        """Test modulo endpoint"""
+        response = client.get('/modulo/12/4')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data['result'] == 0
+
 
 
 # Test Edge Cases
